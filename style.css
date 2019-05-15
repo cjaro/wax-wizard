@@ -54,3 +54,9 @@ body {
 .github-fork-ribbon:before {
     background-color: #007bff!important;
 }
+
+.testingDiv {
+    border: 1px solid #aaa;
+    opacity: 0.5;
+    margin: 30px 0
+}

@@ -1,23 +1,24 @@
 {
-  "name": "waxxer",
-  "version": "1.0.0",
-  "description": "tool for selecting ski wax in a variety of temperatures, humidities, snow condition, and technique.",
-  "main": "main.js",
-  "dependencies": {
-    "eslint": "^5.9.0",
-    "github-fork-ribbon-css": "^0.2.1",
-    "npm": "^6.4.1",
-    "vue": "^2.5.17"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "test"
-  },
-  "keywords": [
-    "skiing",
-    "wax",
-    "calculator"
-  ],
-  "author": "cjaro",
-  "license": "ISC"
+    "name": "waxxer",
+    "version": "1.0.0",
+    "description": "tool for selecting ski wax in a variety of temperatures, humidities, snow condition, and technique.",
+    "main": "main.js",
+    "dependencies": {
+        "@aerisweather/javascript-sdk": "^1.2.0",
+        "eslint": "^5.9.0",
+        "npm": "^6.9.0"
+    },
+    "devDependencies": {
+        "mocha": "^5.2.0"
+    },
+    "scripts": {
+        "test": "test"
+    },
+    "keywords": [
+        "skiing",
+        "wax",
+        "calculator"
+    ],
+    "author": "cjaro",
+    "license": "ISC"
 }

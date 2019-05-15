@@ -8,6 +8,7 @@ function convertCtoF(valNum) {
     document.getElementById("outputFahrenheit").innerHTML = ((valNum * 1.8) + 32).toFixed(1);
 }
 
+// Temperature
 function returnWaxColor() {
     var wax = document.getElementById('inputFahrenheit').value;
     if (wax > 61) {
@@ -32,8 +33,22 @@ function returnWaxColor() {
     // break returnWaxColor;
 }
 
+// Humidity
+// 70% is humidity threshold.
+function returnHumidityIndex() {
+    var hum = document.getElementById('.input-humidity').value;
+    if (hum > 70) {
+        return "Pro-tip! It looks like the humidity is pretty low - you might want to use graphite!"
+    } else if (hum < 70 && hum > 20) {
+        // return LF
+    } else {
+        // return HF
+    }
+}
 
+// Snow type
 
+// Activity level 
 
 
 
