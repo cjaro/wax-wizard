@@ -5,113 +5,100 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="icons/favicon-32x32.png">
-    <meta name="application-name" content="Waxxer">
-    <meta name="msapplication-TileColor" content="#2685ff">
-    <meta name="theme-color" content="#2685ff">
-    <!-- Popper for BootStrap -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!-- Bootstrap JS & CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-
     <!-- AerisWeather API Challenge -->
-    <script defer src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
+    <script src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
     <link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.css">
     <!-- Scripts -->
     <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
-    <script src="aerisApiChallenge.js"></script>
+    <link rel="stylesheet" href="aerisstyle.css">
+    <!-- <script src="main.js"></script> -->
+    <!-- <script src="aerisApiChallenge.js"></script> -->
     <title>Waxxer</title>
 </head>
 
 <body>
     <div class="container header">
-        <img src="icons/favicon-194x194.png" alt="">
+        <img src="icons/favicon-194x194.png" alt="waxxer logo" style="width: 25px;height:25px">
         <h1>Waxxer</h1>
     </div>
     <div class="container">
         <div class="col-md-12 waxxer-form">
             <div class="wax-sub">
-                <div class="form-group">
-                    <label for="fahrenheit">Temperature (Fahrenheit):</label>
-                    <br>
-                    <div class="flex-form">
-                        <div id="fahrenheit-input">
-                            <input id="inputFahrenheit" class="form-control" type="number" placeholder="" oninput="convertFtoC(this.value)" onchange="convertFtoC(this.value)" name="temp input">
-                            <sub><span id="outputCelsius"></span> ºC</sub>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
+
+                <div class="aeris-zip-code">
                     <label for="location-zip-code">Location:</label>
                     <br>
-                    <div class="flex-form">
-                        <input id="inputLocationZIP" class="form-control" type="number" placeholder="ZIP code" name="location input">
-                        <div><span id="outputZIPtoLocation"></span></div>
+                    <div>
+                        <input id="inputLocationZIP" class="form-control" placeholder="ZIP code" name="location input">
+                        <div><span id="outputZipLocation"></span></div>
                         <div class="location-input"></div>
                     </div>
-                    <div class="testingDiv">
-                        <p>Works in Progress - check back for updates!</p>
-                        <div class="form-group">
-                            <!--action="index.html" method="post" -->
-                            <label>Humidity %:</label>
-                            <br>
-                            <div class="flex-form">
-                                <input class="form-control humidity-input" type="text" name="humidity" value="" placeholder="" disabled="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Snow Type:</label>
-                            <br>
-                            <select class="form-control" name="" disabled="">
-                      <option class="dropdown-item" value="newsnow">New snow</option>
-                      <option class="dropdown-item" value="oldsnow">Old snow</option>
-                      <option class="dropdown-item" value="slushywarm">Slushy/warm snow</option>
-                      <option class="dropdown-item" value="icyold">Icy/cold snow</option>
-                      <option class="dropdown-item" value="manmade">Manmade snow</option>
-                      <option class="dropdown-item" value="option-dirt">Dirt</option>
-                    </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Activity Level:</label>
-                            <br>
-                            <select class="form-control" disabled="">
-                      <option value="recreation">Recreation</option>
-                      <option value="racing-cheap">Racing on a budget</option>
-                      <option value="racing-pricey">Racing with gift cards</option>
-                      <option value="option-olympics">Olympics</option>
-                      </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Ski Technique:</label>
-                            <br>
-                            <select class="form-control" disabled="">
-                      <option value="classic">Classic</option>
-                      <option value="skate">Skate/Freestyle</option>
-                    </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary button-div" type="button" onclick="returnWaxColor();">Show me the wax!</button>
-                    </div>
 
+                    <div>Conditions:
+                        <div id="obs"></div>
+                    </div>
                 </div>
-                <div>Wax color: <span id="wax-color-div"></span> </div>
-                <div>Conditions:
-                    <div id="obs"></div>
-                </div>
+
             </div>
 
-        </div>
+            <script>
+                window.onload = function() {
 
-        <script>
-        </script>
-        <!-- <div class="wrapper">
-            <img src="assets/cross-country-skiing-mountains.jpg" alt="">
-        </div> -->
+                        const target = document.getElementById('obs');
+                        const aeris = new AerisWeather('RPWkCaESX2v8UsgEhZSu8', 'NIKctIWAkkEvTHWQsELj51e32qonWWGVS0DZ7OV5');
+
+
+                        const request = aeris.api().endpoint('observations').place('minneapolis,mn');
+
+                        request.get().then((result) => {
+                                    const {
+                                        ob
+                                    } = result.data;
+                                    if (ob) {
+                                        const html = (`
+                    <p class="timestamp">Last updated at ${aeris.utils.dates.format(new Date(ob.timestamp * 1000), 'h:mm a, MMM D, YYYY')}</p>
+                    <div class="cols">
+                        <div>
+                            <p class="temp">${ob.tempF}<span>&deg;F</span></p>
+                            <p class="wx">${ob.weatherPrimary}</p>
+                        </div>
+                        <div>
+                            <img class="icon" src="https://cdn.aerisapi.com/wxblox/icons/${ob.icon || 'na.png'}">
+                        </div>
+                        <div class="details">
+                            <div class="row">
+                                <div>Winds</div>
+                                <div>${ob.windSpeedMPH > 0 ? `${ob.windSpeedMPH} mph` : `Calm`}</div>
+                            </div>
+                            <div class="row">
+                                <div>Dew Point</div>
+                                <div>${ob.dewpointF || 'N/A'}&deg;F</div>
+                            </div>
+                            <div class="row">
+                                <div>Humidity</div>
+                                <div>${ob.humidity || 'N/A'}%</div>
+                            </div>
+                            <div class="row">
+                                <div>Pressure</div>
+                                <div>${ob.pressureIN || 'N/A'} in.</div>
+                            </div>
+                            <div class="row">
+                                <div>Visibility</div>
+                                <div>${ob.visibilityMI || 'N/A'} mi</div>
+                            </div>
+                            <div class="row">
+                                <div>Sky Cover</div>
+                                <div>${ob.sky || 'N/A'}%</div>
+                            </div>
+                        </div>
+                    </div>
+                `);
+                target.innerHTML = html;
+            }
+        }); 
+    };
+            </script>
+
 </body>
 
 </html>

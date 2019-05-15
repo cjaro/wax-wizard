@@ -1,0 +1,77 @@
+#obs {
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+    color: #222;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    margin: 40px auto;
+    padding: 20px;
+    width: 600px;
+}
+
+#obs p {
+    margin: 0;
+}
+
+#obs .cols,
+#obs .details .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#obs .cols>div {
+    flex-basis: 0;
+    margin: 0 5px;
+}
+
+#obs .icon {
+    margin: 0 20px;
+    width: 100px;
+}
+
+#obs .wx {
+    border-top: 2px solid #ddd;
+    font-size: 18px;
+    margin-top: 8px;
+    padding-top: 10px;
+    width: 150px;
+}
+
+#obs .temp {
+    font-size: 50px;
+    margin-top: 20px;
+}
+
+#obs .temp span {
+    color: #666;
+    font-size: 30px;
+    font-weight: normal;
+    padding-left: 6px;
+}
+
+#obs .details {
+    font-size: 14px;
+}
+
+#obs .details .row>div {
+    flex-basis: 0;
+    flex-grow: 1;
+    margin: 0 5px;
+    width: 100px;
+}
+
+#obs .details .row {
+    margin: 6px 0;
+}
+
+#obs .details .row div:last-child {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#obs .timestamp {
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
