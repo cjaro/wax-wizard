@@ -5,6 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="icons/favicon-32x32.png">
+    <!-- Bootstrap -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- AerisWeather API Challenge -->
     <script src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
     <link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.css">
@@ -25,78 +31,98 @@
         <div class="col-md-12 waxxer-form">
             <div class="wax-sub">
 
-                <div class="aeris-zip-code">
+                <div class="aeris-zip-code row">
                     <label for="location-zip-code">Location:</label>
                     <br>
                     <div>
-                        <input id="inputLocationZIP" class="form-control" placeholder="ZIP code" name="location input">
-                        <div><span id="outputZipLocation"></span></div>
-                        <div class="location-input"></div>
+                        <input id="zipcode" class="form-control input-zip" placeholder="ZIP code" name="location input">
+                        <button class="btn btn-primary">check weather for skiing</button>
                     </div>
-
-                    <div>Conditions:
-                        <div id="obs"></div>
-                    </div>
+                </div>
+                </br>
+                <div class="row">
+                    <div>How fun will it be to ski?</div>
+                </div>
+                <div class="row">
+                    <table class="table">
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Muddy</td>
+                            <td>Watery</td>
+                            <td>Slow</td>
+                            <td>Good</td>
+                            <td>Fast!</td>
+                        </tr>
+                    </table>
+                </div>
+                </br>
+                <div>Conditions:
+                    <div id="obs"></div>
                 </div>
 
             </div>
 
             <script>
-                window.onload = function() {
+                window.onload = () => {
 
                         const target = document.getElementById('obs');
                         const aeris = new AerisWeather('RPWkCaESX2v8UsgEhZSu8', 'NIKctIWAkkEvTHWQsELj51e32qonWWGVS0DZ7OV5');
 
-
                         const request = aeris.api().endpoint('observations').place('minneapolis,mn');
-
                         request.get().then((result) => {
                                     const {
                                         ob
                                     } = result.data;
                                     if (ob) {
                                         const html = (`
-                    <p class="timestamp">Last updated at ${aeris.utils.dates.format(new Date(ob.timestamp * 1000), 'h:mm a, MMM D, YYYY')}</p>
-                    <div class="cols">
-                        <div>
-                            <p class="temp">${ob.tempF}<span>&deg;F</span></p>
-                            <p class="wx">${ob.weatherPrimary}</p>
-                        </div>
-                        <div>
-                            <img class="icon" src="https://cdn.aerisapi.com/wxblox/icons/${ob.icon || 'na.png'}">
-                        </div>
-                        <div class="details">
-                            <div class="row">
-                                <div>Winds</div>
-                                <div>${ob.windSpeedMPH > 0 ? `${ob.windSpeedMPH} mph` : `Calm`}</div>
-                            </div>
-                            <div class="row">
-                                <div>Dew Point</div>
-                                <div>${ob.dewpointF || 'N/A'}&deg;F</div>
-                            </div>
-                            <div class="row">
-                                <div>Humidity</div>
-                                <div>${ob.humidity || 'N/A'}%</div>
-                            </div>
-                            <div class="row">
-                                <div>Pressure</div>
-                                <div>${ob.pressureIN || 'N/A'} in.</div>
-                            </div>
-                            <div class="row">
-                                <div>Visibility</div>
-                                <div>${ob.visibilityMI || 'N/A'} mi</div>
-                            </div>
-                            <div class="row">
-                                <div>Sky Cover</div>
-                                <div>${ob.sky || 'N/A'}%</div>
-                            </div>
-                        </div>
-                    </div>
-                `);
-                target.innerHTML = html;
-            }
-        }); 
-    };
+                 <p class="timestamp">Last updated at ${aeris.utils.dates.format(new Date(ob.timestamp * 1000), 'h:mm a, MMM D, YYYY')}</p>
+                 <p>${ob.name}</p>
+                 <div class="cols">
+                    
+                     <div>
+                         <p class="temp">${ob.tempF}<span>&deg;F</span></p>
+                         <p class="temp">${ob.tempC}<span>&deg;C</span></p>
+                         <p class="wx">${ob.weatherPrimary}</p>
+                     </div>
+                    
+                     <div class="details">
+                         <div class="row">
+                             <div>Winds</div>
+                             <div>${ob.windSpeedMPH > 0 ? `${ob.windSpeedMPH} mph` : `Calm`}</div>
+                         </div>
+                         <div class="row">
+                             <div>Dew Point</div>
+                             <div>${ob.dewpointF || 'N/A'}&deg;F</div>
+                         </div>
+                         <div class="row">
+                             <div>Humidity</div>
+                             <div>${ob.humidity || 'N/A'}%</div>
+                         </div>
+                         <div class="row">
+                             <div>Pressure</div>
+                             <div>${ob.pressureIN || 'N/A'} in.</div>
+                         </div>
+                         <div class="row">
+                             <div>Visibility</div>
+                             <div>${ob.visibilityMI || 'N/A'} mi</div>
+                         </div>
+                         <div class="row">
+                             <div>Sky Cover</div>
+                             <div>${ob.sky || 'N/A'}%</div>
+                         </div>
+                     </div>
+                 </div>
+             `);
+             target.innerHTML = html;
+         }
+     }); 
+ };
             </script>
 
 </body>
